@@ -2,7 +2,7 @@ module.exports = function(app){
 
 var request = require("request");
 var urlenconde = require('urlencode');
-var apikey = "RGAPI-18956786-d333-40cc-b2c6-d9aced3f4876"//api
+var apikey = "RGAPI-4ccc267c-4dba-46f4-b705-bdb224f15ac2"//api
 var my_grade
 var profileIconId;  //아이콘 번호
 var revisionDate; //수정날짜
