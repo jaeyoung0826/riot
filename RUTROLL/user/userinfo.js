@@ -4,7 +4,7 @@ var urlencode=require("urlencode");
 const search = require('../api/api');
 var local_puuid;
 var need_data;
-result.userInfo = function(name) {
+result.userInfo = function(name,callback) {
     var encode_name=urlencode(name)
     searchGameInfo.getPuuid(encode_name).then(puuid => {
         local_puuid=puuid
@@ -84,7 +84,29 @@ result.userInfo = function(name) {
             b=key+" 승률: 0  판 수: (0/"+all_map_count[key]+")"
             result.push(b)
         }
-        console.log(result)
+
+        /*
+        *  result에 담을 데이터를 json형식으로 담는게 좋을거 같네요.
+        *
+        *  var result = {
+        *       [
+        *           {
+        *               'map' : 'TFT3_GameVariation_Bonanza',
+        *               'winRate' : '100%',
+        *               'gameCount' : '1/3'
+        *           },
+        *           {
+        *               'map' : 'TFT3_GameVariation_Bonanza',
+        *               'winRate' : '100%',
+        *               'gameCount' : '1/3'
+        *           },
+        *       ]
+        *   }
+        *
+        *
+        * */
+
+        callback(result);
     });
     
 };

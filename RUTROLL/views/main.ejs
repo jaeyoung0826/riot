@@ -10,14 +10,28 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <style> @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");</style>
     <script>
-    $(document).ready(function(){
-
-
-      $("button#searchButton").click(function(){
-        var name = $("input").val();
-        location.href = "http://localhost:3000/search/" + name;
-      })
-    });
+        function setEvent() {
+            $("#searchButton").click(function(){
+            var name = $("input").val();
+            getUserInfo(name);
+          })
+        }
+        function getUserInfo(name) {
+            var _this = this;
+            $.ajax({
+                method : 'GET',
+                async : false,
+                url : 'http://localhost:3000/api/search/'+name
+            }).done(function(result){
+                _this.renderData(result);
+            });
+        }
+        function renderData(data) {
+            console.log(data)
+        }
+        $(document).ready(function(){
+            setEvent();
+        });
     </script>
   </head>
   <body>
@@ -28,7 +42,7 @@
     <div class="center2">
    	<input type="text" class="input_text" placeholder="소환사 이름">
     <span class="input-group-btn">
-      <button id="searchButton" class="btn btn-primary" type="button" onclick="search(name)">click!</button>
+      <button id="searchButton" class="btn btn-primary" type="button">click!</button>
     </span>
    </div>
   </div>
