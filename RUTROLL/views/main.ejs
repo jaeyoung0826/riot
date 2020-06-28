@@ -21,13 +21,14 @@
             $.ajax({
                 method : 'GET',
                 async : false,
-                url : 'http://localhost:3000/api/search/'+name
+                url : 'api/search/'+name
             }).done(function(result){
                 _this.renderData(result);
             });
         }
         function renderData(data) {
             console.log(data)
+            $('#resultData').html('');
             $.each(data,function(){
                 var liEl = "<li>" + this + "</li>";
                 $("#resultData").append(liEl);
