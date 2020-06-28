@@ -28,6 +28,10 @@
         }
         function renderData(data) {
             console.log(data)
+            $.each(data,function(){
+                var liEl = "<li>" + this + "</li>";
+                $("#resultData").append(liEl);
+            });
         }
         $(document).ready(function(){
             setEvent();
@@ -45,6 +49,7 @@
       <button id="searchButton" class="btn btn-primary" type="button">click!</button>
     </span>
    </div>
+   <ul id="resultData" style="margin-top:100px"></ul>
   </div>
 </body>
 </html>
